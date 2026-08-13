@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Soonnova/Soonnova/main/name.svg" alt="Bannière Soon" />
+  <img src="https://raw.githubusercontent.com/Soonnova/Soonnova/main/logo.svg" alt="Bannière Soon" />
 </p>
 
 <hr style="width: 50%; border: none; height: 1px; background: linear-gradient(to right, transparent, #4facfe, transparent); margin: 20px auto;" />
