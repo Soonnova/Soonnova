@@ -46,10 +46,10 @@
         }
       </style>
       <div class="container">
-        <h1>Soon59</h1>
+        <h1>Soonnova</h1>
         <canvas id="snowCanvas" width="800" height="200"></canvas>
       </div>
-      <script>
+      <script><![CDATA[
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
         let flakes = [];
@@ -114,7 +114,7 @@
         measureText();
         createFlakes();
         animate();
-      </script>
+      ]]></script>
     </div>
   </foreignObject>
 </svg>
