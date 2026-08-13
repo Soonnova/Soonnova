@@ -92,7 +92,6 @@
             f.x += f.vx;
             f.y += f.vy;
 
-            // Collision uniquement pour les flocons de devant
             if (!f.isBehind) {
               if (f.x > textBounds.x && f.x < textBounds.x + textBounds.width &&
                   f.y > textBounds.y && f.y < textBounds.y + textBounds.height) {
@@ -101,7 +100,6 @@
               }
             }
 
-            // Réinitialisation en haut lorsqu'il sort de l'écran
             if (f.y > canvas.height + 20) {
               f.y = Math.random() * -50 - 10;
               f.x = Math.random() * canvas.width;
