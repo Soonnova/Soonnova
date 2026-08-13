@@ -58,7 +58,7 @@
 
         function measureText() {
           ctx.font = '900 80px "Segoe UI", sans-serif';
-          const text = "Soon59";
+          const text = "Soonnova";
           const metrics = ctx.measureText(text);
           textBounds = {
             x: canvas.width / 2 - metrics.width / 2,
@@ -106,7 +106,7 @@
 
             ctx.font = f.fontSize + 'px "Segoe UI", sans-serif';
             ctx.fillStyle = 'rgba(255, 255, 255, ' + f.alpha + ')';
-            ctx.fillText('❅', f.x, f.y);
+            ctx.fillText('❄', f.x, f.y);
           });
           requestAnimationFrame(animate);
         }
