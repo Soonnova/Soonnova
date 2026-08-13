@@ -1,16 +1,32 @@
 <p align="center">
   <img src="https://raw.githubusercontent.com/Soonnova/Soonnova/main/name.svg" alt="Bannière Soon" />
-<p align="center">
-<h2> Enthusiast cybersecurity student </h2>
 </p>
 
-![](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)
-![](https://img.shields.io/badge/Radix_UI-6200EE?style=for-the-badge&logo=radix-ui&logoColor=white)
+<hr style="width: 50%; border: none; height: 1px; background: linear-gradient(to right, transparent, #4facfe, transparent); margin: 20px auto;" />
 
-<img src ="./assets/bg-3.webp" width="95%">
+<div align="center">
+  <h2> Enthusiast cybersecurity student </h2>
 
+  <a href="https://tryhackme.com/p/0xSoon">
+    <img src="https://img.shields.io/badge/TryHackMe-Profil-1f2937?style=for-the-badge&logo=tryhackme&logoColor=white" alt="TryHackMe" />
+  </a>
+  <a href="https://app.hackthebox.com/profile/0xSoon">
+    <img src="https://img.shields.io/badge/HackTheBox-Profil-111927?style=for-the-badge&logo=hackthebox&logoColor=9FEF00" alt="Hack The Box" />
+  </a>
 </div>
+
+```javascript
+// A bit more about myself:
+
+const Soon = {
+  code: ["JavaScript", "SQL", "HTML/CSS", "C++", "Bash"],
+  tools: ["VS Code", "Obsidian", "Git", "Wireshark"],
+  education: ["Vocational High School Diploma (IT)", "Associate in Cybersecurity"]
+  interests: {
+        mainInterest: "cybersecurity",
+        sideInterest: "system_administration",
+        enthusiasticAbout: ["pentesting", "automation"]
+  },
+  hobbies: ["gaming", "gym", "trekking"]
+};
+```
