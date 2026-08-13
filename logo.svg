@@ -46,7 +46,7 @@
         }
       </style>
       <div class="container">
-        <h1>Soonnova</h1>
+        <h1>Soon59</h1>
         <canvas id="snowCanvas" width="800" height="200"></canvas>
       </div>
       <script>
@@ -57,7 +57,6 @@
         let textBounds = null;
 
         function measureText() {
-          // Utilisation de pixels (px) fixes au lieu de 'rem' non supporté par le contexte 2D de manière fluide ici
           ctx.font = '900 80px "Segoe UI", sans-serif';
           const text = "Soon59";
           const metrics = ctx.measureText(text);
