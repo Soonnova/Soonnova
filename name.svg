@@ -17,6 +17,7 @@
           justify-content: center;
           align-items: center;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin: 0;
         }
         h1 {
           margin: 0;
@@ -38,33 +39,33 @@
           position: absolute;
           top: 0;
           left: 0;
-          width: 100%;
-          height: 100%;
+          width: 800px;
+          height: 200px;
           z-index: 5;
           pointer-events: none;
         }
       </style>
       <div class="container">
-        <h1>Soon59</h1>
-        <canvas id="snowCanvas"></canvas>
+        <h1>Soonnova</h1>
+        <canvas id="snowCanvas" width="800" height="200"></canvas>
       </div>
       <script>
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
-        const container = canvas.parentElement;
         let flakes = [];
         const numFlakes = 40;
         let textBounds = null;
 
         function measureText() {
-          ctx.font = '900 5rem "Segoe UI"';
+          // Utilisation de pixels (px) fixes au lieu de 'rem' non supporté par le contexte 2D de manière fluide ici
+          ctx.font = '900 80px "Segoe UI", sans-serif';
           const text = "Soon59";
           const metrics = ctx.measureText(text);
           textBounds = {
             x: canvas.width / 2 - metrics.width / 2,
-            y: canvas.height / 2 - 40,
+            y: canvas.height / 2 - 30,
             width: metrics.width,
-            height: 80
+            height: 70
           };
         }
 
@@ -73,13 +74,11 @@
           for (let i = 0; i < numFlakes; i++) {
             flakes.push({
               x: Math.random() * canvas.width,
-              // Position de départ invisible au-dessus du cadre
               y: Math.random() * -150 - 10,
               vx: (Math.random() - 0.5) * 0.8,
               vy: Math.random() * 1 + 0.6,
               fontSize: Math.random() * 15 + 15,
               alpha: Math.random() * 0.5 + 0.3,
-              // Détermine si le flocon passe derrière ou devant le texte
               isBehind: Math.random() > 0.6
             });
           }
@@ -106,15 +105,13 @@
               f.vy = Math.random() * 1 + 0.6;
             }
 
-            ctx.font = f.fontSize + 'px Arial';
+            ctx.font = f.fontSize + 'px "Segoe UI", sans-serif';
             ctx.fillStyle = 'rgba(255, 255, 255, ' + f.alpha + ')';
             ctx.fillText('❅', f.x, f.y);
           });
           requestAnimationFrame(animate);
         }
 
-        canvas.width = 800;
-        canvas.height = 200;
         measureText();
         createFlakes();
         animate();
