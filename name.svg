@@ -1,4 +1,4 @@
-<svg fill="none" viewBox="0 0 800 120" width="800" height="120" xmlns="http://www.w3.org/2000/svg">
+<svg fill="none" viewBox="0 0 800 200" width="800" height="200" xmlns="http://www.w3.org/2000/svg">
   <foreignObject width="100%" height="100%">
     <div xmlns="http://www.w3.org/1999/xhtml">
       <style>
@@ -7,78 +7,120 @@
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-
         .container {
           position: relative;
           width: 800px;
-          height: 120px;
+          height: 200px;
+          overflow: hidden;
+          background: linear-gradient(135deg, #0c0c12 0%, #1a1a2e 100%);
           display: flex;
           justify-content: center;
           align-items: center;
-          overflow: hidden;
-          background: transparent;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         h1 {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           margin: 0;
-          font-size: 3.5em;
+          font-size: 5rem;
           font-weight: 900;
-          letter-spacing: -.05em;
-          text-align: center;
-          background: linear-gradient(270deg, #3828ca 0%, #ff004c 50%, #3828ca 100%);
-          background-size: 200%;
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          background: linear-gradient(270deg, #4facfe 0%, #00f2fe 25%, #ff007f 50%, #00f2fe 75%, #4facfe 100%);
+          background-size: 400% 400%;
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
-          animation: gradientText 3s ease infinite;
+          animation: gradientText 8s ease infinite;
+          position: relative;
           z-index: 10;
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
         }
-
-        @keyframes snowflakes-fall {
-          0% { top: -10%; }
-          100% { top: 110%; }
-        }
-
-        @keyframes snowflakes-shake {
-          0% { transform: translateX(0px); }
-          50% { transform: translateX(30px); }
-          100% { transform: translateX(0px); }
-        }
-
-        .snowflake {
+        canvas {
           position: absolute;
-          top: -10%;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           z-index: 5;
-          color: #fff;
-          font-size: 1.2em;
-          font-family: Arial, sans-serif;
-          text-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
-          user-select: none;
-          cursor: default;
-          animation-name: snowflakes-fall, snowflakes-shake;
-          animation-timing-function: linear, ease-in-out;
-          animation-iteration-count: infinite, infinite;
-          animation-play-state: running, running;
+          pointer-events: none;
+        }
+      </style>
+      <div class="container">
+        <h1>Soon59</h1>
+        <canvas id="snowCanvas"></canvas>
+      </div>
+      <script>
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        const container = canvas.parentElement;
+        let flakes = [];
+        const numFlakes = 40;
+        let textBounds = null;
+
+        function measureText() {
+          ctx.font = '900 5rem "Segoe UI"';
+          const text = "Soon59";
+          const metrics = ctx.measureText(text);
+          textBounds = {
+            x: canvas.width / 2 - metrics.width / 2,
+            y: canvas.height / 2 - 40,
+            width: metrics.width,
+            height: 80
+          };
         }
 
-        .snowflake:nth-of-type(1) { left: 10%; animation-duration: 7s, 2.5s; animation-delay: 0s, 0s; }
-        .snowflake:nth-of-type(2) { left: 25%; animation-duration: 9s, 3s; animation-delay: 2s, 1s; }
-        .snowflake:nth-of-type(3) { left: 40%; animation-duration: 6s, 2s; animation-delay: 1s, 1.5s; }
-        .snowflake:nth-of-type(4) { left: 55%; animation-duration: 8s, 3.5s; animation-delay: 3s, 0.5s; }
-        .snowflake:nth-of-type(5) { left: 70%; animation-duration: 10s, 2.8s; animation-delay: 1.5s, 2s; }
-        .snowflake:nth-of-type(6) { left: 85%; animation-duration: 7.5s, 3s; animation-delay: 4s, 1s; }
-      </style>
+        function createFlakes() {
+          flakes = [];
+          for (let i = 0; i < numFlakes; i++) {
+            flakes.push({
+              x: Math.random() * canvas.width,
+              // Position de départ invisible au-dessus du cadre
+              y: Math.random() * -150 - 10,
+              vx: (Math.random() - 0.5) * 0.8,
+              vy: Math.random() * 1 + 0.6,
+              fontSize: Math.random() * 15 + 15,
+              alpha: Math.random() * 0.5 + 0.3,
+              // Détermine si le flocon passe derrière ou devant le texte
+              isBehind: Math.random() > 0.6
+            });
+          }
+        }
 
-      <div class="container">
-        <h1>Soon</h1>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❅</div>
-      </div>
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          
+          flakes.forEach(f => {
+            f.x += f.vx;
+            f.y += f.vy;
+
+            // Collision uniquement pour les flocons de devant
+            if (!f.isBehind) {
+              if (f.x > textBounds.x && f.x < textBounds.x + textBounds.width &&
+                  f.y > textBounds.y && f.y < textBounds.y + textBounds.height) {
+                  f.y = textBounds.y - 5;
+                  f.vy *= -0.5;
+              }
+            }
+
+            // Réinitialisation en haut lorsqu'il sort de l'écran
+            if (f.y > canvas.height + 20) {
+              f.y = Math.random() * -50 - 10;
+              f.x = Math.random() * canvas.width;
+              f.vy = Math.random() * 1 + 0.6;
+            }
+
+            ctx.font = f.fontSize + 'px Arial';
+            ctx.fillStyle = 'rgba(255, 255, 255, ' + f.alpha + ')';
+            ctx.fillText('❅', f.x, f.y);
+          });
+          requestAnimationFrame(animate);
+        }
+
+        canvas.width = 800;
+        canvas.height = 200;
+        measureText();
+        createFlakes();
+        animate();
+      </script>
     </div>
   </foreignObject>
 </svg>
